@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CategoriesComponent } from './categories.component';
+import { JokeSearchComponent } from '../joke-search/joke-search.component';
 
 describe('CategoriesComponent', () => {
   let component: CategoriesComponent;
@@ -8,6 +9,7 @@ describe('CategoriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [JokeSearchComponent],
       declarations: [ CategoriesComponent ]
     })
     .compileComponents();
