@@ -1,0 +1,45 @@
+<section class="hero is-success">
+    <div class="hero-body">
+      <div class="container">
+       <div class="columns">
+          <div class="column">
+              <h1 class="title is-half">
+                  Chuck Norris Jokes
+              </h1>
+              <h2 class="subtitle">
+                <a routerLink="/">Categories</a> / {{category | titlecase}}
+              </h2>
+          </div>
+          <div class="column is-half">
+              
+                
+          </div>
+       </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+          <div class="card" *ngIf="joke">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <img [src]="joke.icon_url" alt="Placeholder image">
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-4"><span *ngFor="let category of joke.category">{{category | titlecase }}</span></p>
+                  </div>
+                </div>
+                <div class="content">
+                 {{joke.value}}
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
