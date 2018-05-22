@@ -5,12 +5,14 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Category } from '../models/category';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CategoryService {
-  private categoriesUrl = 'https://api.chucknorris.io/jokes/categories';  // URL to joke categories
+  private categoriesUrl = `${environment.apiUrl}categories`;
   constructor(private http: HttpClient) { }
 
   /**

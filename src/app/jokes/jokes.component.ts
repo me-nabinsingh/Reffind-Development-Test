@@ -21,6 +21,9 @@ export class JokesComponent implements OnInit {
     this.getRandomJoke();
   }
 
+  /**
+   * Load random joke
+   */
   getRandomJoke(): void {
     this.jokeService.getRandom(this.category)
     .subscribe(joke => this.joke = joke);
