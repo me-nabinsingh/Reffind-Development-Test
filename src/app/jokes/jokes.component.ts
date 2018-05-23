@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { JokeService } from '../services/joke.service';
 import { ActivatedRoute } from '@angular/router';
+
+import { JokeService } from '../services/joke.service';
 
 import { Joke } from '../models/joke';
 

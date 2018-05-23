@@ -22,8 +22,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    JokeSearchComponent
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
