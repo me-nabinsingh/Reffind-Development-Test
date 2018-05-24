@@ -1,0 +1,29 @@
+<section class="hero is-success">
+    <div class="hero-body">
+      <div class="container">
+       <div class="columns">
+          <div class="column">
+              <h1 class="title is-half">
+                  Chuck Norris Jokes
+              </h1>
+              <h2 class="subtitle">
+                  Categories
+              </h2>
+          </div>
+          <div class="column is-half">
+                <app-joke-search></app-joke-search>
+          </div>
+       </div>
+      </div>
+    </div>
+  </section>
+
+<div class="container">
+    <div class="columns is-multiline">
+        <div class="column is-one-quarter" *ngFor="let category of categories">
+          <div class="box content category-item">
+            <h2><a routerLink="/categories/{{category}}">{{category | titlecase}}</a></h2>
+          </div>
+        </div>
+      </div>
+</div>
