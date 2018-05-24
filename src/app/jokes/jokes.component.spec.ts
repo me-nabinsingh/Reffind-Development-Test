@@ -38,7 +38,7 @@ describe('JokesComponent', () => {
        providers: [
         { provide: Router,         useValue: routerSpy},
         { provide: JokeService, useValue: jokeServiceSpy },
-        { provide: ActivatedRoute, useValue: activatedRoute },
+        { provide: ActivatedRoute, useValue: new ActivatedRouteStub() },
       ]
     })
     .compileComponents();
@@ -48,6 +48,7 @@ describe('JokesComponent', () => {
     fixture = TestBed.createComponent(JokesComponent);
     component = fixture.componentInstance;
     jokeServiceSpy.getRandom.and.returnValue(asyncData(getTestJoke()));
+    fixture.detectChanges();
   });
 
 
