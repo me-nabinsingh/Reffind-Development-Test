@@ -6,7 +6,6 @@
   </div>
   <div *ngIf="joke$ | async; let _data">
       <div class="notification">
-          <button (click)="deleteJoke()" class="delete"></button>
         <h3 class="quote">{{_data.value}}</h3>
       </div>
    </div>

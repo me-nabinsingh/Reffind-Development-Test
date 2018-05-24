@@ -26,13 +26,13 @@ describe('CategoryService', () => {
   }));
 
 
-  it('should return joke categories', () => {
+  it('should return categories', () => {
     const categories:Category[] = [{name: 'science'}, {name: 'dev'}]
    
     httpClientSpy.get.and.returnValue(asyncData(categories));
    
     categoryService.all().subscribe(
-      joke => expect(joke).toEqual(categories),
+      cats => expect(cats).toEqual(categories),
       fail
     );
 
@@ -49,7 +49,7 @@ describe('CategoryService', () => {
     httpClientSpy.get.and.returnValue(asyncError(errorResponse));
    
     categoryService.all().subscribe(
-      heroes => fail('expected an error, not jokes'),
+      heroes => fail('expected an error, not categories'),
       error  => expect(error.error).toContain('404 error')
     );
   });

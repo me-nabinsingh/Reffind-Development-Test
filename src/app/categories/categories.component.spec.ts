@@ -4,22 +4,22 @@ import { CategoriesComponent } from './categories.component';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { RouterLinkDirectiveStub } from '../../testing/router-link-directive-stub';
+import { asyncData } from '../../testing/async-observable-helpers';
 import { CategoryService } from '../services/category.service';
+
+import { Router } from '@angular/router';
+import { getTestCategories } from './test-categories';
 
 @Component({selector: 'app-joke-search', template: ''})
 class JokeSearchStubComponent { }
-
-class MockCategoryService {
-  all = [
-    "explicit", "dev", "movie", "food", "celebrity", "science", "sport", "political", "religion"
-  ];
-};
 
 describe('CategoriesComponent', () => {
   let component: CategoriesComponent;
   let fixture: ComponentFixture<CategoriesComponent>;
 
   beforeEach(async(() => {
+    const categoryServiceSpy = jasmine.createSpyObj('CategoryService', ['all']);
+
     TestBed.configureTestingModule({
       declarations: [ 
         CategoriesComponent,
@@ -27,20 +27,25 @@ describe('CategoriesComponent', () => {
         RouterLinkDirectiveStub 
       ],
       providers: [
-        { provide: CategoryService, useClass: MockCategoryService },
+        { provide: CategoryService, useValue: categoryServiceSpy },
       ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      schemas:  [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(CategoriesComponent);
+      component = fixture.componentInstance;
+
+      categoryServiceSpy.all.and.returnValue(asyncData(getTestCategories()));
+      fixture.detectChanges();
+    });
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CategoriesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should have categories', () => {
+    expect(component.categories.length).toBe(2);
+  });
+
 });

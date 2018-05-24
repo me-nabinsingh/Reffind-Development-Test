@@ -14,19 +14,21 @@ import { Joke } from '../models/joke';
 export class JokesComponent implements OnInit {
 
   joke: Joke;
-  category: string = this.route.snapshot.paramMap.get('slug');
+  category: string;
 
-  constructor(private jokeService: JokeService, private route: ActivatedRoute) { }
+  constructor(private jokeService: JokeService, private route: ActivatedRoute) {
+    
+   }
 
   ngOnInit() {
-    this.getRandomJoke();
+    this.route.paramMap.subscribe(pmap => this.getRandomJoke(pmap.get('slug')));
   }
 
   /**
    * Load random joke
    */
-  getRandomJoke(): void {
-    this.jokeService.getRandom(this.category)
+  getRandomJoke(category: string): void {
+    this.jokeService.getRandom(category)
     .subscribe(joke => this.joke = joke);
   }
 
