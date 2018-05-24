@@ -32,4 +32,9 @@ describe('JokeSearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should return random joke', () => {
+    component.search('Funny');
+    expect(component.joke$).toBeTruthy();
+  });
+
 });
